@@ -1,9 +1,10 @@
 <template>
-  <li>
+  <li class="list-group-item">
     <span v-bind:class="{ done: todo.completed }">
       <label>
         <input
           type="checkbox"
+          class="form-check-input"
           v-on:change="
             /* eslint-disable vue/no-mutating-props */
             todo.completed = !todo.completed
@@ -13,9 +14,7 @@
       <strong>{{ index + 1 }}</strong>
       {{ todo.title }}
     </span>
-    <button class="rm" v-on:click="$emit('remove-todo', todo.id)">
-      &times;
-    </button>
+    <button class="btn-close" v-on:click="$emit('remove-todo', todo.id)" />
   </li>
 </template>
 
@@ -37,13 +36,6 @@ li {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 2rem;
-  margin-bottom: 1rem;
-}
-.rm {
-  background: red;
-  color: #fff;
-  border-radius: 50%;
-  font-weight: bold;
 }
 input {
   margin-right: 1rem;

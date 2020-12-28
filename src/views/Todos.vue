@@ -1,23 +1,25 @@
 <template>
-  <h2>Todo application</h2>
-  <router-link to="/">Home</router-link>
-  <hr />
-  <AddTodo @add-todo="addTodo" />
-  <label>
-    <select v-model="filter">
-      <option value="all">All</option>
-      <option value="completed">Completed</option>
-      <option value="not-completed">Not completed</option>
-    </select>
-  </label>
-  <hr />
-  <Loader v-if="loading" />
-  <TodoList
-    v-else-if="filteredTodos.length"
-    v-bind:todos="filteredTodos"
-    @remove-todo="removeTodo"
-  />
-  <p v-else>No todos!</p>
+  <div class="container">
+    <h2>Todo application</h2>
+    <hr />
+    <div class="d-flex justify-content-between mb-4">
+      <AddTodo @add-todo="addTodo" />
+      <label>
+        <select class="form-select" v-model="filter">
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="not-completed">Not completed</option>
+        </select>
+      </label>
+    </div>
+    <Loader v-if="loading" />
+    <TodoList
+      v-else-if="filteredTodos.length"
+      v-bind:todos="filteredTodos"
+      @remove-todo="removeTodo"
+    />
+    <p v-else>No todos!</p>
+  </div>
 </template>
 
 <script>

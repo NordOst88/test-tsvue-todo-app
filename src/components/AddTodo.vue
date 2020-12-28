@@ -1,9 +1,19 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <label>
-      <input type="text" v-model="title" />
-    </label>
-    <button type="submit">Create</button>
+    <div class="input-group mb-3">
+      <label>
+        <input
+          class="form-control"
+          placeholder="todo"
+          type="text"
+          aria-describedby="button-addon"
+          v-model="title"
+        />
+      </label>
+      <button class="btn btn-primary" id="button-addon" type="submit">
+        Create
+      </button>
+    </div>
   </form>
 </template>
 
