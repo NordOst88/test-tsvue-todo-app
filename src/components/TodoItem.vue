@@ -5,6 +5,7 @@
         <input
           type="checkbox"
           class="form-check-input"
+          :checked="todo.completed"
           v-on:change="
             /* eslint-disable vue/no-mutating-props */
             todo.completed = !todo.completed

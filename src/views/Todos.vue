@@ -12,7 +12,7 @@
         </select>
       </label>
     </div>
-    <Loader v-if="loading" />
+    <Loader v-if="this.$store.getters.LOADING" />
     <TodoList
       v-else-if="filteredTodos.length"
       v-bind:todos="filteredTodos"
@@ -37,30 +37,25 @@ export default {
     };
   },
   mounted() {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=3")
-      .then(response => response.json())
-      .then(json => {
-        this.todos = json;
-        this.loading = false;
-      });
+    this.$store.dispatch("GET_TODO");
   },
   computed: {
     filteredTodos() {
       if (this.filter === "completed") {
-        return this.todos.filter(t => t.completed);
+        return this.$store.getters.TODOS.filter(t => t.completed);
       }
       if (this.filter === "not-completed") {
-        return this.todos.filter(t => !t.completed);
+        return this.$store.getters.TODOS.filter(t => !t.completed);
       }
-      return this.todos;
+      return this.$store.getters.TODOS;
     }
   },
   methods: {
     removeTodo(id) {
-      this.todos = this.todos.filter(t => t.id !== id);
+      this.$store.dispatch("REMOVE_TODO", id);
     },
     addTodo(todo) {
-      this.todos.push(todo);
+      this.$store.dispatch("SAVE_TODO", todo);
     }
   },
   components: {
